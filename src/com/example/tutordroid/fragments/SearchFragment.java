@@ -1,9 +1,8 @@
 package com.example.tutordroid.fragments;
 
-import utils.RequestSite;
+import utils.GetCardFromApi;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,13 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.example.tutordroid.Card;
 import com.example.tutordroid.R;
+import com.example.tutordroid.Tutor;
 
 public class SearchFragment extends SherlockFragment implements OnClickListener {
 
 	private EditText cardname;
 	private Button searchbutton;
-	private RequestSite request;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,12 +45,9 @@ public class SearchFragment extends SherlockFragment implements OnClickListener 
 	}
 	
 	private void search() {
-		request = new RequestSite();
+		GetCardFromApi request = new GetCardFromApi(){
+		};
 		String url =  "http://fm-tutor.herokuapp.com/cards/" + Uri.encode( cardname.getText().toString() ) + ".json";
 		request.execute(url);
-//		String returned_string = request.result;
-//		Log.i("Search", returned_string);
-		
 	}
-
 }

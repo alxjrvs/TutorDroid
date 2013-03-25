@@ -8,17 +8,13 @@ import java.net.URL;
 
 import org.apache.http.util.ByteArrayBuffer;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
-public class RequestSite extends AsyncTask<String, Void, String> {
-	public String result;
+
+public class RequestSite {
+	public String response;
 	
-	@Override
-	protected String doInBackground(String...urls){
-		String url_string = urls[0];
-		Log.i("IncomingUrl", url_string);
-		String response = "None";
+	public void getSiteResponse(String url_string){
 		try{
 			Log.i("uri", url_string);
 			URL aURL = new URL(url_string);
@@ -34,13 +30,6 @@ public class RequestSite extends AsyncTask<String, Void, String> {
 		} catch (IOException e) {
 			Log.d("IOException", e.toString());
 		} 
-		return response;
-	}
-
-	@Override
-	protected void onPostExecute(String response) {
-		// result is what you got from your connection
-		result = response;
 	}
 
 }
