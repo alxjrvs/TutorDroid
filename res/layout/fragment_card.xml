@@ -1,21 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/card_name"
+        android:id="@+id/super_types"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large Text"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="47dp"
+        android:text="super_types"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="name"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/card_cost"
+        android:id="@+id/cost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="cost"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/sub_types"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/card_types"
+        android:layout_alignBottom="@+id/card_types"
+        android:layout_alignParentRight="true"
+        android:text="sub_types"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/card_types"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/super_types"
+        android:layout_alignBottom="@+id/super_types"
+        android:layout_centerHorizontal="true"
+        android:text="card_types"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

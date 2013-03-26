@@ -12,7 +12,6 @@ public class LoadingFragment extends SherlockFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);	
-
 	}
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup group, Bundle saved) {

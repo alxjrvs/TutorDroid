@@ -1,8 +1,11 @@
 package com.example.tutordroid.fragments;
 
+import utils.CardCallback;
 import utils.GetCardFromApi;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,10 +16,8 @@ import android.widget.EditText;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.example.tutordroid.Card;
 import com.example.tutordroid.R;
-import com.example.tutordroid.Tutor;
 
-public class SearchFragment extends SherlockFragment implements OnClickListener {
-
+public class SearchFragment extends SherlockFragment implements OnClickListener, CardCallback {
 	private EditText cardname;
 	private Button searchbutton;
 	
@@ -37,6 +38,14 @@ public class SearchFragment extends SherlockFragment implements OnClickListener 
 		searchbutton.setOnClickListener(this);
 	}
 	
+	public void onCardTaskComplete(Card shownCard){
+		Log.i("Card", shownCard.name.toString());
+		FragmentTransaction ft = getSherlockActivity().getSupportFragmentManager().beginTransaction();
+		CardFragment.current_card = shownCard;
+		ft.replace(android.R.id.content, new CardFragment());
+		ft.commit();
+	}
+	
 	@Override
 	public void onClick(View v) {
 		if (v == searchbutton) {
@@ -45,8 +54,7 @@ public class SearchFragment extends SherlockFragment implements OnClickListener 
 	}
 	
 	private void search() {
-		GetCardFromApi request = new GetCardFromApi(){
-		};
+		GetCardFromApi request = new GetCardFromApi(this);
 		String url =  "http://fm-tutor.herokuapp.com/cards/" + Uri.encode( cardname.getText().toString() ) + ".json";
 		request.execute(url);
 	}
